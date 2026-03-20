@@ -1,8 +1,9 @@
 ---
-name: Feature Request
-about: 기능 요청
+name: 기능 요청
+about: 필요한 추가기능이 있는지 확인
 title: "[FEAT] "
 labels: enhancement
+type: feature
 ---
 
 # ✨ Feature Request

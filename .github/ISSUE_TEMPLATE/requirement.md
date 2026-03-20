@@ -3,6 +3,7 @@ name: 계획/요구사항
 about: 시스템 설계나 요구사항 문서를 작성할 때 사용
 title: "[PLAN] "
 labels: requirement
+type: feature
 ---
 
 ## 📌 요구사항 개요

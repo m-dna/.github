@@ -1,6 +1,6 @@
 ---
-name: Question
-about: 질문
+name: 질문사항
+about: 궁금한 사항 있으면 남기기
 title: "[Q] "
 labels: question
 ---

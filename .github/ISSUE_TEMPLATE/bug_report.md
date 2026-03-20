@@ -1,8 +1,9 @@
 ---
-name: Bug Report
-about: 버그 제보
+name: 버그 제보
+about: 예상하지 못한 버그가 있으면 제보
 title: "[BUG] "
 labels: bug
+type: bug
 ---
 # 🐞 Bug Report
 
