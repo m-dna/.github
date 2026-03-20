@@ -1,3 +1,9 @@
+---
+name: Bug Report
+about: 버그 제보
+title: "[BUG] "
+labels: bug
+---
 # 🐞 Bug Report
 
 ## 📌 설명

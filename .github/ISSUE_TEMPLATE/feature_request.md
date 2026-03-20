@@ -1,3 +1,10 @@
+---
+name: Feature Request
+about: 기능 요청
+title: "[FEAT] "
+labels: enhancement
+---
+
 # ✨ Feature Request
 
 ## 📌 목적
