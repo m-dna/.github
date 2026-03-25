@@ -3,7 +3,7 @@ name: STP
 about: 테스트 시나리오 및 계획 작성
 title: "[STP-OOO-00] "
 labels: STP
-type: test
+type: task
 ---
 
 ## 📌 테스트 제목
