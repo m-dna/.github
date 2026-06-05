@@ -13,24 +13,16 @@
 
 ---
 
-## 🧱 시스템 아키텍처
-
-<p align="center">
-  <img src="docs/architecture.svg" alt="전체 시스템 아키텍처" width="760">
-</p>
-ARM 코어(PS)와 FPGA(PL)가 결합된 **Zynq SoC**를 중심축으로 채택하고, 실시간성 확보를 위해 FreeRTOS를 이식하여 임베디드 3계층(Task – Application – HAL) 구조를 확립했습니다. 각 부체계는 자체 개발한 **ICD 프로토콜**로 연동됩니다.
+## 시스템 아키텍처
  
-
-
 ```mermaid
-%%{init: {'theme':'base', 'flowchart':{'curve':'linear','nodeSpacing':45,'rankSpacing':70}}}%%
-graph LR
+%%{init: {'theme':'base','flowchart':{'curve':'linear','nodeSpacing':40,'rankSpacing':60}}}%%
+flowchart LR
     subgraph CTRL["통제 · 시뮬레이션 체계"]
         PC["운용 PC"]
         HILS["HILS 구동부<br/>(HILS)"]
         C600(["C600"])
     end
-
     subgraph MSL["미사일 체계"]
         PCAM(["PCAM 5C"])
         SKR["표적탐색기<br/>(SKR)"]
@@ -40,31 +32,30 @@ graph LR
         IMU["관성측정장치<br/>(IMU)"]
         BNO(["BNO085"])
     end
-
     PCAM -->|센서신호| SKR
     BNO  -->|센서신호| IMU
     ACT  -->|제어신호| SG90
     HILS -->|제어신호| C600
-
     SKR <-->|ICD| GCU
     GCU <-->|ICD| ACT
     GCU <-->|ICD| IMU
     GCU <-->|ICD| PC
     PC  <-->|ICD| HILS
-
-    linkStyle 0,1,2,3 stroke:#EF9F27,stroke-width:2px
-    linkStyle 4,5,6,7,8 stroke:#1D9E75,stroke-width:2.5px
-
-    classDef msl fill:#E1F5EE,stroke:#0F6E56,stroke-width:1px,color:#04342C
-    classDef ctrl fill:#E6F1FB,stroke:#185FA5,stroke-width:1px,color:#042C53
-    classDef dev fill:#F1EFE8,stroke:#5F5E5A,stroke-width:1px,color:#2C2C2A
+    classDef msl fill:#E1F5EE,stroke:#0F6E56,color:#04342C
+    classDef ctrl fill:#E6F1FB,stroke:#185FA5,color:#042C53
+    classDef dev fill:#F1EFE8,stroke:#5F5E5A,color:#2C2C2A
     class SKR,GCU,ACT,IMU msl
     class PC,HILS ctrl
     class PCAM,BNO,SG90,C600 dev
+    linkStyle 0,1,2,3 stroke:#EF9F27,stroke-width:2px
+    linkStyle 4,5,6,7,8 stroke:#1D9E75,stroke-width:2.5px
     style MSL fill:#F4FBF8,stroke:#0F6E56,stroke-dasharray:5 4
     style CTRL fill:#F2F8FE,stroke:#185FA5,stroke-dasharray:5 4
 ```
-
+ 
+> 초록 양방향 선은 자체 개발 **ICD 프로토콜**, 주황 단방향 선은 **센서·제어 신호**입니다.
+ 
+ARM 코어(PS)와 FPGA(PL)가 결합된 **Zynq SoC**를 중심축으로 채택하고, 실시간성 확보를 위해 FreeRTOS를 이식하여 임베디드 3계층(Task – Application – HAL) 구조를 확립했습니다.
 
 
 
