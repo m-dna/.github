@@ -33,6 +33,52 @@
                                  +---------------------------+
 ```
 
+
+%%{init: {'theme':'base', 'flowchart':{'curve':'linear','nodeSpacing':45,'rankSpacing':70}}}%%
+graph LR
+    subgraph CTRL["통제 · 시뮬레이션 체계"]
+        PC["운용 PC"]
+        HILS["HILS 구동부(HILS)"]
+        C600(["C600"])
+    end
+
+    subgraph MSL["미사일 체계"]
+        PCAM(["PCAM 5C"])
+        SKR["표적탐색기(SKR)"]
+        GCU["유도조종장치(GCU)"]
+        ACT["자세구동부(ACT)"]
+        SG90(["SG90"])
+        IMU["관성측정장치(IMU)"]
+        BNO(["BNO085"])
+    end
+
+    PCAM -->|센서신호| SKR
+    BNO  -->|센서신호| IMU
+    ACT  -->|제어신호| SG90
+    HILS -->|제어신호| C600
+
+    SKR <==>|ICD| GCU
+    GCU <==>|ICD| ACT
+    GCU <==>|ICD| IMU
+    GCU <==>|ICD| PC
+    PC  <==>|ICD| HILS
+
+    linkStyle 0,1,2,3 stroke:#eab308,stroke-width:2px,color:#000
+    linkStyle 4,5,6,7,8 stroke:#16a34a,stroke-width:3px,color:#000
+
+    style MSL fill:#e8f5e9,stroke:#2e7d52,stroke-width:2px
+    style CTRL fill:#e7edf7,stroke:#3b5b8c,stroke-width:2px
+
+    classDef board fill:#ffffff,stroke:#555,stroke-width:1px
+    classDef device fill:#f5f5f5,stroke:#999,stroke-width:1px,color:#333
+    class SKR,GCU,ACT,IMU,PC,HILS board
+    class PCAM,SG90,BNO,C600 device
+
+
+
+
+
+
 ---
 
 ## ⚙️ 구성 요소
