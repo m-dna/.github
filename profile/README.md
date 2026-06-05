@@ -34,21 +34,22 @@
 ```
 
 
+```mermaid
 %%{init: {'theme':'base', 'flowchart':{'curve':'linear','nodeSpacing':45,'rankSpacing':70}}}%%
 graph LR
     subgraph CTRL["통제 · 시뮬레이션 체계"]
         PC["운용 PC"]
-        HILS["HILS 구동부(HILS)"]
+        HILS["HILS 구동부<br/>(HILS)"]
         C600(["C600"])
     end
 
     subgraph MSL["미사일 체계"]
         PCAM(["PCAM 5C"])
-        SKR["표적탐색기(SKR)"]
-        GCU["유도조종장치(GCU)"]
-        ACT["자세구동부(ACT)"]
+        SKR["표적탐색기<br/>(SKR)"]
+        GCU["유도조종장치<br/>(GCU)"]
+        ACT["자세구동부<br/>(ACT)"]
         SG90(["SG90"])
-        IMU["관성측정장치(IMU)"]
+        IMU["관성측정장치<br/>(IMU)"]
         BNO(["BNO085"])
     end
 
@@ -57,23 +58,24 @@ graph LR
     ACT  -->|제어신호| SG90
     HILS -->|제어신호| C600
 
-    SKR <==>|ICD| GCU
-    GCU <==>|ICD| ACT
-    GCU <==>|ICD| IMU
-    GCU <==>|ICD| PC
-    PC  <==>|ICD| HILS
+    SKR <-->|ICD| GCU
+    GCU <-->|ICD| ACT
+    GCU <-->|ICD| IMU
+    GCU <-->|ICD| PC
+    PC  <-->|ICD| HILS
 
-    linkStyle 0,1,2,3 stroke:#eab308,stroke-width:2px,color:#000
-    linkStyle 4,5,6,7,8 stroke:#16a34a,stroke-width:3px,color:#000
+    linkStyle 0,1,2,3 stroke:#EF9F27,stroke-width:2px
+    linkStyle 4,5,6,7,8 stroke:#1D9E75,stroke-width:2.5px
 
-    style MSL fill:#e8f5e9,stroke:#2e7d52,stroke-width:2px
-    style CTRL fill:#e7edf7,stroke:#3b5b8c,stroke-width:2px
-
-    classDef board fill:#ffffff,stroke:#555,stroke-width:1px
-    classDef device fill:#f5f5f5,stroke:#999,stroke-width:1px,color:#333
-    class SKR,GCU,ACT,IMU,PC,HILS board
-    class PCAM,SG90,BNO,C600 device
-
+    classDef msl fill:#E1F5EE,stroke:#0F6E56,stroke-width:1px,color:#04342C
+    classDef ctrl fill:#E6F1FB,stroke:#185FA5,stroke-width:1px,color:#042C53
+    classDef dev fill:#F1EFE8,stroke:#5F5E5A,stroke-width:1px,color:#2C2C2A
+    class SKR,GCU,ACT,IMU msl
+    class PC,HILS ctrl
+    class PCAM,BNO,SG90,C600 dev
+    style MSL fill:#F4FBF8,stroke:#0F6E56,stroke-dasharray:5 4
+    style CTRL fill:#F2F8FE,stroke:#185FA5,stroke-dasharray:5 4
+```
 
 
 
