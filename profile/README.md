@@ -8,8 +8,14 @@
 
 <table>
   <tr>
-    <td><img width="517" alt="SILS 중기유도" src="https://github.com/user-attachments/assets/f97826c7-b680-4632-ba99-263d358d55da" /></td>
-    <td><img width="350" alt="HILS 종말유도" src="https://github.com/user-attachments/assets/982a9d76-e440-46c3-9faf-a24130ad495a" /></td>
+    <td align="center">
+      <img width="517" alt="SILS 중기유도" src="https://github.com/user-attachments/assets/f97826c7-b680-4632-ba99-263d358d55da" /><br/>
+      <sub><b>SILS — 6DOF 시뮬레이션 대시보드</b></sub>
+    </td>
+    <td align="center">
+      <img width="350" alt="HILS 종말유도" src="https://github.com/user-attachments/assets/982a9d76-e440-46c3-9faf-a24130ad495a" /><br/>
+      <sub><b>HILS — 실물 하드웨어 연동</b></sub>
+    </td>
   </tr>
 </table>
 
