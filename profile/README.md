@@ -173,6 +173,7 @@ flowchart TB
 ## 패킷 구조
 
 패킷은 항상 Base 헤더로 시작하며, 플래그에 따라 확장 헤더가 순서대로 붙습니다.
+<img width="1440" height="680" alt="image" src="https://github.com/user-attachments/assets/b7205e9a-b16e-423c-a2dc-46ea98b66bd5" />
 
 ---
 
