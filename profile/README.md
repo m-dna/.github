@@ -6,8 +6,12 @@
  
 지상 **통제·시뮬레이션 체계**와 **미사일 부체계**를 이원화하여 유기적으로 연동했으며, 소프트웨어만으로 검증하는 **SILS**(Software-in-the-Loop)와 실제 센서·서보 모터를 물리적으로 결합하는 **HILS**(Hardware-in-the-Loop)를 동시에 구축해, 이기종 플랫폼(Windows 통제 UI ↔ FreeRTOS 임베디드 보드) 간 실시간 제어 신뢰성을 정량적으로 실증했습니다.
 
-![]<img width="517" height="231" alt="image" src="https://github.com/user-attachments/assets/f97826c7-b680-4632-ba99-263d358d55da" />
-![]<img width="350" height="234" alt="image" src="https://github.com/user-attachments/assets/982a9d76-e440-46c3-9faf-a24130ad495a" />
+<table>
+  <tr>
+    <td><img width="517" alt="SILS 중기유도" src="https://github.com/user-attachments/assets/f97826c7-b680-4632-ba99-263d358d55da" /></td>
+    <td><img width="350" alt="HILS 종말유도" src="https://github.com/user-attachments/assets/982a9d76-e440-46c3-9faf-a24130ad495a" /></td>
+  </tr>
+</table>
 
  
 ### 핵심 목표
