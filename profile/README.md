@@ -5,6 +5,10 @@
 고비용 유도무기체계는 단 한 번의 소프트웨어 결함이 치명적인 체계 실패로 직결되지만, 실물 발사 시험은 막대한 개발 비용과 물리적·시간적 제약을 동반합니다. 본 프로젝트는 실물 하드웨어 배치 이전에 유도·제어 알고리즘을 반복 검증할 수 있는 **가상 모의 환경**을 구축하는 것을 목표로 합니다.
  
 지상 **통제·시뮬레이션 체계**와 **미사일 부체계**를 이원화하여 유기적으로 연동했으며, 소프트웨어만으로 검증하는 **SILS**(Software-in-the-Loop)와 실제 센서·서보 모터를 물리적으로 결합하는 **HILS**(Hardware-in-the-Loop)를 동시에 구축해, 이기종 플랫폼(Windows 통제 UI ↔ FreeRTOS 임베디드 보드) 간 실시간 제어 신뢰성을 정량적으로 실증했습니다.
+
+![]<img width="517" height="231" alt="image" src="https://github.com/user-attachments/assets/f97826c7-b680-4632-ba99-263d358d55da" />
+![]<img width="350" height="234" alt="image" src="https://github.com/user-attachments/assets/982a9d76-e440-46c3-9faf-a24130ad495a" />
+
  
 ### 핵심 목표
  
@@ -15,6 +19,7 @@
 
 
 ---
+
  
 ## SILS / HILS 모의 환경
  
