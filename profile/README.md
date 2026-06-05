@@ -204,15 +204,70 @@ sequenceDiagram
 
 ---
 
-## 📂 레포지토리 구조
+# 레포지토리 구조
 
-```id="i9v1mt"
-/firmware        # FreeRTOS 기반 임베디드 코드 (Zynq PS)
-/fpga            # Vivado 설계 (PL)
-/app             # WPF 애플리케이션
-/common          # 공통 프로토콜 및 유틸
-/docs            # 설계 문서
+본 프로젝트는 **통합(메타) 레포**가 각 부체계 레포를 **서브모듈**로 묶는 다중 레포 구조입니다. 임베디드 부체계(GCU · SKR · ACT · IMU)는 동일한 표준 템플릿을 공유하며, UI는 .NET WPF 기반이라 별도 구조를 따릅니다. ICD/DTO 정의(`common`)와 통신 계층(`comm`)은 모든 임베디드 보드가 공유하는 서브모듈입니다.
+
+## 통합(메타) 레포
+
+문서·아키텍처·각 부체계 링크를 모으는 최상위 레포입니다.
+
+
+## 임베디드 부체계 표준 구조 (GCU · SKR · ACT · IMU)
+
+Zynq + FreeRTOS 보드는 모두 아래 템플릿을 따릅니다. 코드는 **app(로직) → hal(하드웨어) → rtos(스케줄링)** 3계층으로 나뉘고, 공유 코드는 서브모듈로 가져옵니다.
+
 ```
+<부체계>/                   # 예: act
+├── README.md
+├── CMakeLists.txt
+├── .clang-format          # 코드 스타일 규칙
+├── .gitattributes
+├── .gitignore             # 빌드·Vitis 산출물 제외
+├── .gitmodules            # comm · common · gtest 연결
+├── .vscode/tasks.json
+├── .cproject / .project   # Vitis(Eclipse) 프로젝트 메타
+├── act.prj                # Vitis 프로젝트 파일
+├── _ide/                  # Vitis 생성물 (ps7_init 등)
+├── app/                   # 고수준 비즈니스 로직
+│   ├── include/           # 서비스 인터페이스 (*.hpp)
+│   └── src/               # 서비스 구현 (*.cpp)
+├── hal/                   # 하드웨어 추상화 계층
+│   ├── include/           # 페리페럴 제어 인터페이스 (GPIO · PWM · 카메라 등)
+│   └── src/               # Vitis BSP를 호출하는 실제 드라이버
+├── rtos/                  # FreeRTOS 래퍼
+│   ├── include/           # Task 핸들러 · Queue 정의
+│   └── src/               # Task 생성 및 스케줄링
+├── src/                   # 엔트리 포인트
+│   ├── main.c             # HW 초기화 후 vTaskStartScheduler() 호출
+│   └── lscript.ld         # 링커 스크립트
+├── hw/                    # Vivado 하드웨어 산출물
+│   ├── *.xsa              # 플랫폼 추출물 (커밋 대상)
+│   ├── *.xdc              # 제약 파일 (예: Zybo-Z7-Master.xdc)
+│   └── backup.tcl         # 프로젝트 재생성 tcl 스크립트
+├── test/
+│   ├── unit/              # PC 환경 단위 테스트 (gtest)
+│   └── integration/       # HW 연동 통합 테스트
+├── comm/    (submodule)    # 통신 계층 (UDP/lwIP/ARQ)
+├── common/  (submodule)    # ICD/DTO/enum 공유 정의
+└── gtest/   (submodule)    # 테스트 프레임워크
+```
+
+### 계층 역할
+
+| 계층 | 역할 |
+|---|---|
+| `app` | 부체계 고유 로직 — 명령 처리, 상태머신, 제어 연산 |
+| `hal` | 페리페럴 드라이버를 인터페이스로 추상화 (상위 계층이 HW에 비종속) |
+| `rtos` | FreeRTOS Task·Queue 생성과 스케줄링 래핑 |
+| `src` | 부팅 엔트리 포인트 — HW 초기화 후 커널 시작 |
+| `comm` / `common` | 보드 간 공통 통신 계층 · ICD 정의 (서브모듈) |
+| `hw` | Vivado 플랫폼(XSA)·제약·재생성 스크립트 |
+| `test` | PC 단위 테스트 / HW 통합 테스트 |
+
+## UI 레포 (운용 PC · 별도 구조)
+
+WPF + MVVM 기반이라 임베디드 템플릿과 다릅니다.
 
 ---
 
