@@ -73,16 +73,15 @@ graph LR
 
 ## ⚙️ 구성 요소
 
-### 🔹 Embedded (Zynq + FreeRTOS)
-
-* 실시간 제어 로직 수행
-* 인터럽트 기반 이벤트 처리
-* 주요 태스크:
-
-  * 유도 알고리즘
-  * 센서 데이터 처리
-  * 통신 처리
-
+## 부체계 구성
+ 
+| 부체계 | 역할 | 핵심 기술 |
+|---|---|---|
+| **GCU** 유도조종장치 | 유도·제어 연산 | FreeRTOS 실시간 스케줄링, 확장 비례항법(APN), 공력 이득 역산 + PID 각속도 제어 |
+| **SKR** 표적탐색기 | 영상 기반 표적 추적 | PCAM 5C MIPI CSI-2 영상 수집, Union-Find 픽셀 레이블링으로 O(N) 시선각 산출 |
+| **ACT** 자세구동부 | 서보 구동 | Zynq PL 4채널 Custom PWM IP(VHDL/Verilog), 서보·2DOF 짐벌 구동 |
+| **IMU** 관성측정장치 | 자세 측정 | BNO085 드라이버 최적화, 동적 캘리브레이션 + EMA 필터로 드리프트 방지 |
+| **UI / Comm** 지상통제·통신 | 대시보드·통신 | WPF(C#) MVVM, 6DOF 시뮬레이션, RNA 프로토콜 + Stop-and-Wait ARQ + RSA/AES |
 ---
 
 ### 🔹 FPGA (Programmable Logic)
